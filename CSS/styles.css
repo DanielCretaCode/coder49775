@@ -1,0 +1,18 @@
+/* css/styles.css */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#ticketList {
+  margin-top: 20px;
+}
