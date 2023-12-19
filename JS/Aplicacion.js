@@ -79,6 +79,27 @@ const ticketManager = {
       ticketItem.appendChild(ticketInfo);
       ticketList.appendChild(ticketItem);
     });
+
+   
+    this.setupTicketEventListeners();
+  },
+
+  setupTicketEventListeners() {
+    const closeTicketButtons = document.querySelectorAll('.closeTicket');
+    closeTicketButtons.forEach(button => {
+      button.addEventListener('click', event => {
+        const ticketIndex = event.target.dataset.index;
+        this.closeTicket(ticketIndex);
+      });
+    });
+
+    const deleteTicketButtons = document.querySelectorAll('.deleteTicket');
+    deleteTicketButtons.forEach(button => {
+      button.addEventListener('click', event => {
+        const ticketIndex = event.target.dataset.index;
+        this.deleteTicket(ticketIndex);
+      });
+    });
   },
 
   handleLogin() {
@@ -107,7 +128,8 @@ const ticketManager = {
 
   handleGenerateTicket() {
     const description = prompt('Ingrese la descripción para el nuevo ticket:') || '';
-    const currentDate = new Date().toLocaleString();
+    const currentDate = new Date().toLocaleString('es-ES', { dateStyle: 'medium', timeStyle: 'medium' }); 
+
     const status = 'Abierto';
 
     const newTicket = {
@@ -134,7 +156,20 @@ const ticketManager = {
         console.error('Error fetching tickets:', error);
       });
   },
+
+  closeTicket(index) {
+    if (index >= 0 && index < this.tickets.length) {
+      this.tickets[index].status = 'Cerrado';
+      this.renderTickets();
+    }
+  },
+
+  deleteTicket(index) {
+    if (index >= 0 && index < this.tickets.length) {
+      this.tickets.splice(index, 1);
+      this.renderTickets();
+    }
+  },
 };
 
 ticketManager.init();
-
