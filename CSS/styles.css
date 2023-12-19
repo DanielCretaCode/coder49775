@@ -6,3 +6,29 @@ body {
 #ticketList {
   margin-top: 20px;
 }
+
+.ticket {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.ticket-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.ticket-description {
+  font-size: 16px;
+}
+
+.ticket-date {
+  color: #888;
+}
+
+.ticket-status {
+  font-style: italic;
+  color: #555;
+}
