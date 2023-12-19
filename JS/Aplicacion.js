@@ -96,7 +96,7 @@ const ticketManager = {
       ticketList.appendChild(ticketItem);
     });
 
-    this.setupEventListeners(); // Reconfiguramos los event listeners después de renderizar los tickets
+    this.setupEventListeners();
   },
 
   handleLogin() {
