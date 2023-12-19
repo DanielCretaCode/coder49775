@@ -1,0 +1,15 @@
+[
+  {
+    "number": 1,
+    "description": "Error en office sector administracion",
+    "date": "2023-12-20T12:00:00.000Z",
+    "status": "Abierto"
+  },
+  {
+    "number": 2,
+    "description": "Ipsec caido sede Tierra del fuego",
+    "date": "2023-12-21T12:00:00.000Z",
+    "status": "Cerrado"
+  }
+]
+
