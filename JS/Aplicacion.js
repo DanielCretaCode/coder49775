@@ -15,22 +15,6 @@ const ticketManager = {
     loginButton.addEventListener('click', () => this.handleLogin());
     logoutButton.addEventListener('click', () => this.handleLogout());
     generateTicketButton.addEventListener('click', () => this.handleGenerateTicket());
-
-    const closeTicketButtons = document.getElementsByClassName('closeTicket');
-    for (const button of closeTicketButtons) {
-      button.addEventListener('click', (event) => {
-        const ticketIndex = event.target.dataset.index;
-        this.closeTicket(ticketIndex);
-      });
-    }
-
-    const deleteTicketButtons = document.getElementsByClassName('deleteTicket');
-    for (const button of deleteTicketButtons) {
-      button.addEventListener('click', (event) => {
-        const ticketIndex = event.target.dataset.index;
-        this.deleteTicket(ticketIndex);
-      });
-    }
   },
 
   checkUserSession() {
@@ -95,28 +79,20 @@ const ticketManager = {
       ticketItem.appendChild(ticketInfo);
       ticketList.appendChild(ticketItem);
     });
-
-    this.setupEventListeners();
   },
 
   handleLogin() {
     const email = prompt('Ingrese su correo electrónico:') || '';
     const password = prompt('Ingrese su contraseña:') || '';
 
-    console.log('Correo ingresado:', email);
-    console.log('Contraseña ingresada:', password);
-
     const userEmail = 'coder@house.com';
     const userPassword = '12345';
-
-    console.log('Correo esperado:', userEmail);
-    console.log('Contraseña esperada:', userPassword);
 
     if (email === userEmail && password === userPassword) {
       localStorage.setItem('userEmail', email);
       localStorage.setItem('userPassword', password);
       this.checkUserSession();
-      this.renderTickets();
+      this.loadTickets(); 
     } else {
       alert('Las credenciales no son correctas.');
     }
@@ -126,7 +102,7 @@ const ticketManager = {
     localStorage.removeItem('userEmail');
     localStorage.removeItem('userPassword');
     this.checkUserSession();
-    this.renderTickets();
+    this.renderTickets(); 
   },
 
   handleGenerateTicket() {
@@ -152,26 +128,13 @@ const ticketManager = {
       .then(response => response.json())
       .then(data => {
         this.tickets = data;
-        this.renderTickets();
+        this.renderTickets(); 
       })
       .catch(error => {
         console.error('Error fetching tickets:', error);
       });
   },
-
-  closeTicket(index) {
-    if (index >= 0 && index < this.tickets.length) {
-      this.tickets[index].status = 'Cerrado';
-      this.renderTickets();
-    }
-  },
-
-  deleteTicket(index) {
-    if (index >= 0 && index < this.tickets.length) {
-      this.tickets.splice(index, 1);
-      this.renderTickets();
-    }
-  },
 };
 
 ticketManager.init();
+
